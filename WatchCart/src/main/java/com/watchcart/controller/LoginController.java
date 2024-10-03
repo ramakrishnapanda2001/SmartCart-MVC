@@ -57,6 +57,14 @@ public class LoginController extends HttpServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}else {
+			req.setAttribute("message", "The requested user is not found");
+			RequestDispatcher rd = req.getRequestDispatcher("login_page.jsp");
+			try {
+				rd.include(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
