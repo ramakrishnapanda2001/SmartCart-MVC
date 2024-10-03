@@ -40,21 +40,21 @@ public class LoginDao {
 	//Method for getting user details by email and password.
 	
 	public User getUserByEmailPassword(String email,String password) {
-		User user=null;
+		User user=new User();
 		try {
 			con = DbConnection.getConnection();
-			st= con.prepareStatement("select * from user where user_email=?&&password=?");
+			st= con.prepareStatement("select * from user where user_email=?&&password=?;");
 			st.setString(1, email);
 			st.setString(2, password);
 			ResultSet rs= st.executeQuery();
 			if(rs.next()) {
-				user.setId(rs.getInt(0));
-				user.setName(rs.getString(1));
-				user.setEmail(rs.getString(2));
-				user.setPassword(rs.getString(3));
-				user.setPhone(rs.getString(4));
-				user.setAddress(rs.getString(5));
-				user.setUserType(rs.getString(6));
+				user.setId(rs.getInt("id"));
+				user.setName(rs.getString("user_name"));
+				user.setEmail(rs.getString("user_email"));
+				user.setPassword(rs.getString("password"));
+				user.setPhone(rs.getString("user_phone"));
+				user.setAddress(rs.getString("user_address"));
+				user.setUserType(rs.getString("user_type"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

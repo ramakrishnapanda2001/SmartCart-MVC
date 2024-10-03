@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.watchcart.dao.LoginDao;
 import com.watchcart.model.User;
@@ -23,22 +24,39 @@ public class LoginController extends HttpServlet {
 		user.setPassword(password);
 		
 		LoginDao ldao = new LoginDao();
-		if(ldao.checkLogin(user)) {
+//		if(ldao.checkLogin(user)) {
+//			try {
+//				RequestDispatcher rd = req.getRequestDispatcher("Home.jsp");
+//				rd.forward(req, res);
+//			} catch (ServletException | IOException e) {
+//				e.printStackTrace();
+//			}
+//		}else {
+//			req.setAttribute("message", "Invalid Email or Password");
+//			RequestDispatcher rd = req.getRequestDispatcher("login_page.jsp");
+//			try {
+//				rd.include(req, res);
+//			} catch (ServletException | IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+		user = ldao.getUserByEmailPassword(email, password);
+//		System.out.println(user.toString());
+		HttpSession httpSession = req.getSession();
+		httpSession.setAttribute("current-user", user);
+		
+		if(ldao.checkLogin(user) && user.getUserType().equals("admin")) {
 			try {
-				RequestDispatcher rd = req.getRequestDispatcher("Home.jsp");
-				rd.forward(req, res);
-			} catch (ServletException | IOException e) {
+				res.sendRedirect("AdminPannel.jsp");
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}else {
-			req.setAttribute("message", "Invalid Email or Password");
-			RequestDispatcher rd = req.getRequestDispatcher("login_page.jsp");
+		}else if(ldao.checkLogin(user) && user.getUserType().equals("normal")) {
 			try {
-				rd.include(req, res);
-			} catch (ServletException | IOException e) {
+				res.sendRedirect("Home.jsp");
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 }

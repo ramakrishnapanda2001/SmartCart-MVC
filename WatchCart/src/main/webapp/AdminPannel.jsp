@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>AdminPannel</title>
 </head>
 <body>
 	<%@include file="navbar.jsp" %>
-	<h2>This is my Home for normal users</h2>
+	<h2>This is my admin pannel.</h2>
 </body>
 </html>
