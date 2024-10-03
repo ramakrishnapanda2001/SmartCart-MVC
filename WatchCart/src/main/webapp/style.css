@@ -1,0 +1,92 @@
+@charset "ISO-8859-1";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: oldlace;
+}
+
+.container {
+	display: flex;
+	height: 500px;
+	width: 800px;
+	/*border: 1px solid black;*/
+	margin: auto;
+	margin-top: 50px;
+	box-shadow: 15px 15px 20px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	align-items: center;
+	background-color: whitesmoke;
+}
+
+.form h2 {
+	font-size: 2rem;
+	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+	margin: 30px;
+}
+
+.box {
+	padding: 12px;
+	width: 65%;
+	margin: 10px;
+	border: 1px solid black;
+	color: black;
+	outline: none;
+	border-radius: 20px;
+}
+
+.btn {
+	padding: 12px 30px;
+	width: 40%;
+	margin-top: 15px;
+	background-color: black;
+	color: white;
+	outline: none;
+	font-weight: bold;
+	border-radius: 20px;
+}
+
+.btn:hover {
+	cursor: pointer;
+	background-color: white;
+	color: black;
+}
+
+.form a {
+	text-decoration: none;
+	color: black;
+	margin-top: 12px;
+}
+
+.form a:hover {
+	cursor: pointer;
+	color: #750000;
+}
+
+.form p {
+	text-decoration: none;
+	color: black;
+	margin-top: 20px;
+}
+
+.side img {
+	display: flex;
+	width: 450px;
+	height: 500px;
+}
+
+.iti.iti--allow-dropdown {
+    width: 100%;
+    margin-left: 120px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
